@@ -13,6 +13,37 @@ class BubbleSort {
 					arr[j + 1] = temp;
 				}
 	}
+	void bubbly(int arr[])
+	{
+		int n = arr.length;
+		for (int i = 0; i < n - 1; i++)
+			for (int j = 0; j < n - i - 1; j++)
+				if (arr[j] > arr[j + 1]) {
+					// swap arr[j+1] and arr[j]
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+	}
+	public class FunctionChainingExample {
+
+    static Logger logger = Logger.getLogger(FunctionChainingExample.class.getName());
+
+    private static Function<Integer, Integer> multiply = x -> x * 2;
+
+    private static Function<Integer, Integer> add = x -> x + 2;
+
+    private static Function<Integer, Unit> logOutput = x -> {
+        logger.info("Data:" + x);
+        return Unit.unit();
+    };
+
+    public static Unit execute(Integer input) {
+        Function<Integer, Unit> pipeline = multiply
+                                               .andThen(add)
+                                               .andThen(logOutput);
+        return pipeline.apply(input);
+    }
 
 	/* Prints the array */
 	void printArray(int arr[])
